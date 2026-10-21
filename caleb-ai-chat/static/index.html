@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#050505">
+  <title>夏以昼 · Private Channel</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <svg class="avatar-sprite" aria-hidden="true">
+    <symbol id="calebAvatar" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="29" fill="#070707" stroke="#ff8f2a" stroke-width="2"/>
+      <ellipse cx="32" cy="33" rx="24" ry="12" fill="none" stroke="#4fa7ff" stroke-width="1.6" transform="rotate(-24 32 33)" opacity=".9"/>
+      <path d="M14 32.5 L47 17 L36.5 44 L30 34.5 Z" fill="#ff9b3d"/>
+      <path d="M30 34.5 L47 17 L27 29.5 Z" fill="#ffc276"/>
+      <circle cx="47" cy="45" r="7" fill="#ff7d24" stroke="#ffc276" stroke-width="1.4"/>
+      <path d="M45.5 39.8 C45.8 38 48.3 38 48.6 39.8" fill="none" stroke="#8fe3ae" stroke-width="1.3" stroke-linecap="round"/>
+      <circle cx="18" cy="45" r="2" fill="#4fa7ff"/>
+    </symbol>
+  </svg>
+  <div class="scanlines"></div>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark"><svg class="caleb-avatar"><use href="#calebAvatar"></use></svg></div>
+        <div>
+          <div class="brand-name">夏以昼</div>
+          <div class="brand-sub">CALEB · PRIVATE CHANNEL 0613</div>
+        </div>
+      </div>
+      <div class="top-actions">
+        <span class="user-label" id="userLabel">NOT SIGNED IN</span>
+        <button class="logout-button" id="logoutBtn" type="button" disabled>退出</button>
+        <div class="status-pill" id="statusPill"><span></span><b id="statusText">CONNECTING</b></div>
+      </div>
+    </header>
+
+    <section class="auth-screen" id="authScreen">
+      <div class="auth-card">
+        <div class="eyebrow">PRIVATE PERSONAL CHANNEL</div>
+        <h1>夏以昼</h1>
+        <p class="auth-lead">登录后会恢复你自己的聊天记录，不与其他用户共享。</p>
+        <form id="authForm" autocomplete="on">
+          <label for="authUsername">账号</label>
+          <input id="authUsername" name="username" type="text" maxlength="24" autocomplete="username" placeholder="输入账号">
+          <label for="authPassword">密码</label>
+          <input id="authPassword" name="password" type="password" maxlength="72" autocomplete="current-password" placeholder="输入密码">
+          <div class="auth-status" id="authStatus">尚未登录</div>
+          <div class="auth-buttons">
+            <button class="primary-btn" id="loginBtn" type="submit">登录</button>
+            <button class="secondary-action" id="registerBtn" type="button">注册新账号</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <main class="layout hidden" id="chatWorkspace">
+      <aside class="profile-panel">
+        <div class="profile-orbit">
+          <div class="profile-core"><svg class="caleb-avatar"><use href="#calebAvatar"></use></svg></div>
+        </div>
+        <h1>夏以昼</h1>
+        <p class="profile-role">远空舰队执舰官<br>DAA 战斗机飞行员</p>
+        <div class="tags">
+          <span>Gravity Control</span>
+          <span>06 / 13</span>
+          <span>Archive C-0613</span>
+        </div>
+        <div class="profile-note">
+          <div class="note-title">PRIVATE SIGNAL</div>
+          <p>这里的对话会保存到本地聊天记录，用于维持连续记忆。</p>
+        </div>
+        <button class="reset-btn" id="resetBtn" type="button">清空当前对话</button>
+      </aside>
+
+      <section class="chat-shell">
+        <div class="chat-head">
+          <div>
+            <div class="chat-title">Private Signal</div>
+            <div class="chat-meta" id="chatMeta">LOCAL MEMORY · READY</div>
+          </div>
+          <div class="provider-chip" id="providerChip">MOCK</div>
+        </div>
+
+        <div class="messages" id="messages" aria-live="polite">
+          <article class="message assistant">
+            <div class="avatar"><svg class="caleb-avatar"><use href="#calebAvatar"></use></svg></div>
+            <div class="bubble">妹妹，我在。慢慢说，我听着。</div>
+          </article>
+        </div>
+
+        <div class="quick-row" id="quickRow">
+          <button type="button" data-prompt="你在做什么？">你在做什么？</button>
+          <button type="button" data-prompt="今天想见你。">今天想见你。</button>
+          <button type="button" data-prompt="讲讲你的飞机模型。">讲讲你的飞机模型。</button>
+          <button type="button" data-prompt="你回天行浮岛了吗？">你回天行浮岛了吗？</button>
+        </div>
+
+        <form class="composer" id="chatForm">
+          <textarea id="messageInput" rows="1" maxlength="6000" placeholder="给夏以昼发消息……" autocomplete="off"></textarea>
+          <button id="sendBtn" type="submit" aria-label="发送">
+            <span>发送</span>
+          </button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
